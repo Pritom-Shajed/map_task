@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+
+  AppColors._();
+
   static Color baseColor = hexToColor('#1B1E23');
   static Color baseFontColor = hexToColor('#1B1E23');
   static Color primaryColor = hexToColor('#37A389');
@@ -13,6 +16,12 @@ class AppColors {
   static Color darkGray = const Color(0xFF9F9F9F);
   static Color black = const Color(0xFF000000);
   static Color white = const Color(0xFFFFFFFF);
+
+  static Color placeCodeColor = hexToColor('#8CBEB4');
+  static Color districtColor = hexToColor('#B44641');
+  static Color postCodeColor = hexToColor('#669DEF');
+
+  static Color hintTextColor = hexToColor('#a8a8a8');
 }
 
 Color hexToColor(String hex) {

@@ -30,8 +30,9 @@ class Dimensions {
   static final double paddingHorizontal12 = 12.w;
   static final double paddingHorizontal14 = 14.w;
   static final double paddingHorizontal16 = 16.w;
-  static final double paddingHorizontal24 = 24.w;
   static final double paddingHorizontal20 = 20.w;
+  static final double paddingHorizontal24 = 24.w;
+  static final double paddingHorizontal34 = 34.w;
 
   //Padding - Vertical
 

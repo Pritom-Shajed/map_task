@@ -18,13 +18,13 @@ class AppPages {
 
     GetPage(
         name: Routes.HOME,
-        page: () => const HomePage(),
+        page: () =>  HomePage(),
         binding: HomeBinding(),
     ),
 
     GetPage(
       name: Routes.SEARCH,
-      page: () => const SearchPage(),
+      page: () =>  const SearchPage(),
       binding: SearchBinding(),
     ),
   ];

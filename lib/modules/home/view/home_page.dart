@@ -1,16 +1,29 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:maplibre_gl/maplibre_gl.dart';
 import 'package:task/components/global_widgets/global_widgets.dart';
+import 'package:task/helper/environment/environment.dart';
 import 'package:task/modules/home/models/home_quick_action_model.dart';
 import 'package:task/modules/home/widgets/home_widgets.dart';
 import 'package:task/routes/routes.dart';
 import 'package:task/utils/constants/constants.dart';
-import 'package:task/utils/styles/styles.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  CameraPosition initialPosition= const CameraPosition(target: LatLng(23.835677, 90.380325), zoom: 12);   //CameraPosition object for initial location in map
+  MaplibreMapController? mController;
+
+  static const styleId = 'osm-liberty' ;    //barikoi map style id
+  static String apiKey = Environment.apiKey;   //barikoi API key, get it from https://developer.barikoi.com
+  static String mapUrl= 'https://map.barikoi.com/styles/$styleId/style.json?key=$apiKey';
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +33,23 @@ class HomePage extends StatelessWidget {
         children: [
 
           //MAP
-          Container(
+          SizedBox(
             height: double.maxFinite,
             width: double.maxFinite,
-            color: Colors.grey.shade300,
+            child: MaplibreMap(
+
+              initialCameraPosition: initialPosition,   // set map initial location where map will show first
+              onMapCreated: (MaplibreMapController mapController){  //called when map object is created
+                mController= mapController;   // use the MaplibreMapController for map operations
+              },
+              styleString: mapUrl , // barikoi map style url
+            ),
           ),
 
           //BODY
           Column(
             children: [
-              HomeWidgets.searchBar(onTapSearch: () => Get.toNamed(Routes.SEARCH)),
+              HomeWidgets.searchBar(onTapSearch: () =>  Get.toNamed(Routes.SEARCH)),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
@@ -60,9 +80,7 @@ class HomePage extends StatelessWidget {
             bottom: 0,
             left: 0,
             right: 0,
-            child: HomeWidgets.bottomNavBar(onTap: (index){
-              log('selected index: $index');
-            }),
+            child: HomeWidgets.bottomNavBar(onTap: (index){}),
           )
         ],
       )),

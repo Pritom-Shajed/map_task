@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:task/components/global_widgets/global_widgets.dart';
 import 'package:task/modules/home/home.dart';
 import 'package:task/utils/constants/constants.dart';
@@ -157,7 +159,20 @@ class HomeWidgets {
                 ),
 
 
-                Divider(color: AppColors.lightGray, height: 20.h, thickness: 5,)
+                Divider(color: AppColors.lightGray, height: 20.h, thickness: 5,),
+
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingHorizontal34, vertical: Dimensions.paddingVertical24),
+                  child: Column(
+                    children: [
+                      _bottomSheetCodeContainer(title: 'Place Code', value: 'MNEB9766', colorCode: AppColors.placeCodeColor),
+                      14.verticalSpace,
+                      _bottomSheetCodeContainer(title: 'District', value: 'Dhaka', colorCode: AppColors.districtColor),
+                      14.verticalSpace,
+                      _bottomSheetCodeContainer(title: 'Post Code', value: '1216', colorCode: AppColors.postCodeColor),
+                    ],
+                  ),
+                )
               ],
             ),
           );
@@ -186,5 +201,48 @@ Widget _bottomNavBarIcon ({VoidCallback? onTap, required bool isSelected, requir
         ],
       ),
     ),
+  );
+}
+
+Widget _bottomSheetCodeContainer ({required String title, required String value, required Color colorCode}){
+  return Row(
+    children: [
+      Expanded(
+        flex: 2,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 3,
+              child: AppTexts.smallText(
+                text: title,
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: AppTexts.smallText(
+                text: ':',
+              ),
+            ),
+          ],
+        ),
+      ),
+
+
+      8.horizontalSpace,
+      Expanded(
+        flex: 3,
+        child: Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.symmetric(horizontal: Dimensions.paddingHorizontal24, vertical: Dimensions.paddingVertical6),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(Dimensions.radius8),
+              border: Border.all(color: colorCode, width: 1),
+              color: colorCode.withOpacity(0.1)
+          ),
+          child: AppTexts.smallText(text: value, color: colorCode),
+        ),
+      ),
+    ],
   );
 }
