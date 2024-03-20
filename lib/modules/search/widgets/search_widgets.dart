@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:task/components/global_widgets/global_widgets.dart';
+import 'package:task/modules/search/search.dart';
 import 'package:task/utils/constants/constants.dart';
+import 'package:task/utils/styles/styles.dart';
 
 class SearchWidgets {
   SearchWidgets._();
@@ -15,4 +18,9 @@ class SearchWidgets {
       ],
     );
   }
+
+
+
+
 }
+

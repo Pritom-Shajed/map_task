@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/get_utils.dart';
 import 'package:task/components/global_widgets/global_widgets.dart';
 import 'package:task/modules/home/home.dart';
 import 'package:task/utils/constants/constants.dart';
@@ -59,7 +58,6 @@ class HomeWidgets {
   }
 
   static Widget bottomNavBar ({required ValueChanged<int> onTap}){
-    var navIndex = 0;
     return StatefulBuilder(builder: (context, setState){
       return Container(
         padding: EdgeInsets.all(10.w),
@@ -73,111 +71,23 @@ class HomeWidgets {
         ),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: List.generate(NavBarItem.items.length, (index) =>   _bottomNavBarIcon(
-              onTap: (){
-                setState(() {
-                  navIndex = index;
-                });
-                onTap(index);
-              },
-              iconPath: NavBarItem.items[index].iconPath,
-              labelText: NavBarItem.items[index].title,
-              isSelected: navIndex == index,))
+            children: List.generate(NavBarItem.items.length, (index) =>   Obx(() {
+                return _bottomNavBarIcon(
+                  onTap: (){
+                    onTap(index);
+                  },
+                  iconPath: NavBarItem.items[index].iconPath,
+                  labelText: NavBarItem.items[index].title,
+                  isSelected: Get.find<HomeController>().pageIndex == index,);
+              }
+            ))
         ),
       );
     });
   }
 
 
-  static void bottomSheet (BuildContext context, {VoidCallback? onTapSave, required String title, required String description, required String cord}){
-    showModalBottomSheet(
-        useRootNavigator: true,
-        isScrollControlled: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(Dimensions.radius16),
-          ),
-        ),
-        context: context,
-        builder: (context){
-          return Container(
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(Dimensions.radius16),
-              ),
-            ),
-            child: ListView(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              children: [
 
-                //HEADER
-                Padding(
-                  padding:  EdgeInsets.all(14.w),
-                  child: Column(
-                    children: [
-
-                      //TITLE
-                      Row(
-                        children: [
-                          Expanded(child: AppTexts.largeText(text: title)),
-
-                          AppButtons.roundedIconBtn(iconPath: AppSvgIcons.save, onTap: onTapSave)
-                        ],
-                      ),
-
-                      //DESCRIPTION
-                      8.verticalSpace,
-                      AppTexts.smallText(text: description),
-                      8.verticalSpace,
-                      Row(children: [
-                        AppTexts.smallText(text: 'Sports Club', fontWeight: FontWeight.w500),
-                        8.horizontalSpace,
-                        AppTexts.smallText(text: '•', fontWeight: FontWeight.w500),
-                        8.horizontalSpace,
-                        Row(
-                          children: [
-                            SvgIcon(iconPath: AppSvgIcons.car, size: 11.r,),
-                            8.horizontalSpace,
-                            AppTexts.smallText(text: '9 min'),
-                          ],
-                        )
-                      ],),
-
-                      8.verticalSpace,
-                      Row(
-                        children: [
-                          SvgIcon(iconPath: AppSvgIcons.cord, size: 15.r,),
-                          8.horizontalSpace,
-                          AppTexts.smallText(text: cord)
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-
-
-                Divider(color: AppColors.lightGray, height: 20.h, thickness: 5,),
-
-                Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: Dimensions.paddingHorizontal34, vertical: Dimensions.paddingVertical24),
-                  child: Column(
-                    children: [
-                      _bottomSheetCodeContainer(title: 'Place Code', value: 'MNEB9766', colorCode: AppColors.placeCodeColor),
-                      14.verticalSpace,
-                      _bottomSheetCodeContainer(title: 'District', value: 'Dhaka', colorCode: AppColors.districtColor),
-                      14.verticalSpace,
-                      _bottomSheetCodeContainer(title: 'Post Code', value: '1216', colorCode: AppColors.postCodeColor),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          );
-        });
-  }
 
 }
 
@@ -204,45 +114,3 @@ Widget _bottomNavBarIcon ({VoidCallback? onTap, required bool isSelected, requir
   );
 }
 
-Widget _bottomSheetCodeContainer ({required String title, required String value, required Color colorCode}){
-  return Row(
-    children: [
-      Expanded(
-        flex: 2,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 3,
-              child: AppTexts.smallText(
-                text: title,
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: AppTexts.smallText(
-                text: ':',
-              ),
-            ),
-          ],
-        ),
-      ),
-
-
-      8.horizontalSpace,
-      Expanded(
-        flex: 3,
-        child: Container(
-          alignment: Alignment.center,
-          padding: EdgeInsets.symmetric(horizontal: Dimensions.paddingHorizontal24, vertical: Dimensions.paddingVertical6),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimensions.radius8),
-              border: Border.all(color: colorCode, width: 1),
-              color: colorCode.withOpacity(0.1)
-          ),
-          child: AppTexts.smallText(text: value, color: colorCode),
-        ),
-      ),
-    ],
-  );
-}

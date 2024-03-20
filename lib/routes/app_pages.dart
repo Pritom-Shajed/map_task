@@ -18,11 +18,12 @@ class AppPages {
 
     GetPage(
         name: Routes.HOME,
-        page: () =>  HomePage(),
+        page: () =>  const HomePage(),
         binding: HomeBinding(),
     ),
 
     GetPage(
+      transition: Transition.fade,
       name: Routes.SEARCH,
       page: () =>  const SearchPage(),
       binding: SearchBinding(),

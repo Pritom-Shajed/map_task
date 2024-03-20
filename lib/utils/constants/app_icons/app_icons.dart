@@ -14,3 +14,8 @@ class AppSvgIcons {
   static String car = 'assets/icons/car.svg';
   static String cord = 'assets/icons/cord.svg';
 }
+
+class AppPngIcons {
+  AppPngIcons._();
+  static String mapMarker = 'assets/icons/map_marker.png';
+}

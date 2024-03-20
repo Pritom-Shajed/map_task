@@ -7,7 +7,7 @@ import 'package:task/storage/repository/storage_repository.dart';
 Future<void> init () async{
   Get.lazyPut(() => ApiClient(appBaseUrl: Environment.baseApiUrl, sharedPreferences: Get.find()), fenix: true);
 
-  Get.lazyPut(() => StorageRepository(sharedPreferences:  Get.find(), apiClient: Get.find()), fenix: true);
+  Get.lazyPut(() => StorageRepository(sharedPreferences:  Get.find()), fenix: true);
   Get.lazyPut(() => StorageController(storageRepository:  Get.find()), fenix: true);
 
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task/utils/constants/constants.dart';
@@ -13,19 +15,12 @@ class ApiClient extends GetConnect implements GetxService{
     timeout = const Duration(seconds: 90);
     token = sharedPreferences.getString(StorageConstants.TOKEN)??'';
     allowAutoSignedCert = true;
-    _mainHeaders = {
-      'Context-type':'application/json; charset=UTF-8',
-      'Authorization':'Bearer $token',
-    };
+    _mainHeaders = {};
   }
 
-  void updateHeader({required String token}){
-    _mainHeaders = {
-      'Context-type':'application/json; charset=UTF-8',
-      'Authorization':'Bearer $token',
-    };
-  }
   Future<Response> getData(String uri, {Map<String, String>? headers}) async{
+    log('url: $uri');
+
     try{
       Response response = await get(Uri.encodeFull(uri), headers: headers ?? _mainHeaders);
       return response;

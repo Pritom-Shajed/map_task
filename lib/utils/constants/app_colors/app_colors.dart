@@ -16,6 +16,7 @@ class AppColors {
   static Color darkGray = const Color(0xFF9F9F9F);
   static Color black = const Color(0xFF000000);
   static Color white = const Color(0xFFFFFFFF);
+  static Color red =  Colors.red.shade300;
 
   static Color placeCodeColor = hexToColor('#8CBEB4');
   static Color districtColor = hexToColor('#B44641');
