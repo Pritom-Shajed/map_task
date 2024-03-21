@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:task/components/global_widgets/global_widgets.dart';
 import 'package:task/modules/home/home.dart';
 import 'package:task/utils/constants/constants.dart';
+import 'package:task/utils/strings.dart';
 import 'package:task/utils/styles/styles.dart';
 
 class HomeWidgets {
@@ -28,7 +29,7 @@ class HomeWidgets {
           12.horizontalSpace,
           Expanded(child: GestureDetector(
               onTap: onTapSearch,
-              child: AppTexts.smallText(text: 'Search here', color: AppColors.primaryColor, fontWeight: FontWeight.w500))),
+              child: AppTexts.smallText(text: Strings.searchHere, color: AppColors.primaryColor, fontWeight: FontWeight.w500))),
           12.horizontalSpace,
           SvgIcon(iconPath: AppSvgIcons.mic, size: 18.w,)
         ],

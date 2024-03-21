@@ -4,4 +4,5 @@
   static const String unknownError = 'Unknown Error! Try again after sometime.';
   static const String turnOnLocation = 'Turn on your location';
   static const String noSavedPlaces = 'No places saved yet';
+  static const String searchHere = 'Search here';
 }
