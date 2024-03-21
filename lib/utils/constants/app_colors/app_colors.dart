@@ -7,7 +7,7 @@ class AppColors {
   static Color baseColor = hexToColor('#1B1E23');
   static Color baseFontColor = hexToColor('#1B1E23');
   static Color primaryColor = hexToColor('#37A389');
-  static Color lightScaffoldBackgroundColor = hexToColor('#F9F9F9');
+  static Color lightScaffoldBackgroundColor = const Color(0xFFFFFFFF);
   static Color darkScaffoldBackgroundColor = hexToColor('#2F2E2E');
   static Color secondaryAppColor = hexToColor('#22DDA6');
   static Color secondaryDarkAppColor = Colors.white;

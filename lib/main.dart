@@ -10,6 +10,7 @@ import 'utils/styles/styles.dart';
 
 void main() {
   Initializer.init(() async {
+    await Future.delayed(const Duration(milliseconds: 150));
     runApp(const MyApp());
   });
 

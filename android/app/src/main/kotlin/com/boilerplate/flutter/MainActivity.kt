@@ -1,4 +1,4 @@
-package com.boilerplate.flutter
+package com.map.task
 
 import io.flutter.embedding.android.FlutterActivity
 

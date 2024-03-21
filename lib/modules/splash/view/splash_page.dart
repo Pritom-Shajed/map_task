@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task/components/global_widgets/global_widgets.dart';
 import 'package:task/utils/constants/constants.dart';
 
 class SplashPage extends StatelessWidget {
@@ -13,16 +15,10 @@ class SplashPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.hourglass_bottom,
-              color: AppColors.darkGray,
-              size: 30.0,
-            ),
+            SvgIcon(iconPath: AppSvgIcons.map, color: AppColors.primaryColor, size: 45.w,),
 
-            const Text(
-              'loading...',
-              style: TextStyle(fontSize: 30.0),
-            ),
+            14.verticalSpace,
+            AppLoaders.spinningLines()
           ],
         ),
       ),

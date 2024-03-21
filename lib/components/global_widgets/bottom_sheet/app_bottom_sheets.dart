@@ -43,7 +43,6 @@ class AppBottomSheets {
                       Row(
                         children: [
                           Expanded(child: AppTexts.largeText(text: placeInfo.address.split(',')[0])),
-
                           AppButtons.roundedIconBtn(iconPath: AppSvgIcons.save, iconColor: isSaved ? AppColors.red : AppColors.baseColor, onTap: onTapSave)
                         ],
                       ),
@@ -52,26 +51,13 @@ class AppBottomSheets {
                       8.verticalSpace,
                       AppTexts.smallText(text: placeInfo.address),
                       8.verticalSpace,
-                      Row(children: [
-                        AppTexts.smallText(text: 'Sports Club', fontWeight: FontWeight.w500),
-                        8.horizontalSpace,
-                        AppTexts.smallText(text: '•', fontWeight: FontWeight.w500),
-                        8.horizontalSpace,
-                        Row(
-                          children: [
-                            SvgIcon(iconPath: AppSvgIcons.car, size: 11.r,),
-                            8.horizontalSpace,
-                            AppTexts.smallText(text: '9 min'),
-                          ],
-                        )
-                      ],),
-
+                      AppTexts.smallText(text: placeInfo.subType, fontWeight: FontWeight.w500),
                       8.verticalSpace,
                       Row(
                         children: [
                           SvgIcon(iconPath: AppSvgIcons.cord, size: 15.r,),
                           8.horizontalSpace,
-                          AppTexts.smallText(text: '${placeInfo.latitude}"N, ${placeInfo.longitude}"E')
+                          Expanded(child: AppTexts.smallText(text: '${placeInfo.latitude}"N, ${placeInfo.longitude}"E'))
                         ],
                       ),
                     ],

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
@@ -43,9 +41,6 @@ class SearchPageController extends GetxController {
     try {
       searchPlaces.clear();
       final response = await _searchRepo.autocompleteApi(query: searchTextController.text.trim());
-
-      log('response: ${response.statusCode}');
-      log('response: ${response.body}');
 
       final apiResponseHandler = ApiResponseHandler(response, successCallback: (response){
         final List places = response.body['places'];
