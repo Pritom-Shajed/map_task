@@ -35,8 +35,6 @@ class _HomePageState extends State<HomePage> {
               //BODY
               controller.pageIndex == 0 ? _mapPage(context, controller) : _savedPage(controller),
 
-
-
               //NAVIGATION BAR
               Positioned(
                 bottom: 0,

@@ -9,7 +9,7 @@ Future<void> init () async{
   Get.lazyPut(() => ApiClient(appBaseUrl: Environment.baseApiUrl, sharedPreferences: Get.find()), fenix: true);
 
   Get.lazyPut(() => StorageRepository(sharedPreferences:  Get.find()), fenix: true);
-  Get.lazyPut(() => StorageController(storageRepository:  Get.find()), fenix: true);
+  Get.lazyPut(() => StorageController(storageRepo:  Get.find()), fenix: true);
 
   Get.lazyPut(() => LocationRepository(), fenix: true);
   Get.lazyPut(() => LocationController(locationRepo:  Get.find()), fenix: true);

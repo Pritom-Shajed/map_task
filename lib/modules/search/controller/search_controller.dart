@@ -9,7 +9,6 @@ import 'package:task/utils/strings.dart';
 class SearchPageController extends GetxController {
   final SearchRepository _searchRepo;
 
-
   late TextEditingController searchTextController;
   late FocusNode searchFocusNode;
   late Debouncer debounce;
