@@ -36,7 +36,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    initialCameraPosition = CameraPosition(target: userPosition != null ? LatLng(userPosition!.latitude, userPosition!.longitude) : const LatLng(23.835677, 90.380325), zoom: 12);
+    initialCameraPosition = CameraPosition(target: userPosition != null ? LatLng(userPosition!.latitude, userPosition!.longitude) : const LatLng(23.835677, 90.380325), zoom: 14);
     symbolOptions = SymbolOptions(
       geometry: userPosition != null ? LatLng(userPosition!.latitude, userPosition!.longitude) : const LatLng(23.835677, 90.380325),
       iconImage: 'custom-marker',
@@ -47,13 +47,13 @@ class HomeController extends GetxController {
 
   updateMapSymbolPosition (LatLng latLng) {
     mController?.clearSymbols();
-    initialCameraPosition = CameraPosition(target: latLng, zoom: 12);
+    initialCameraPosition = CameraPosition(target: latLng, zoom: 14);
     symbolOptions =  SymbolOptions(
       geometry: latLng,
       iconImage: 'custom-marker',
       iconSize: .2,
     );
-    mController?.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: latLng, zoom: 12)));
+    mController?.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: latLng, zoom: 14)));
     mController?.addSymbol(symbolOptions);
   }
 

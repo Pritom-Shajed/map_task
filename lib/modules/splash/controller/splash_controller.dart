@@ -9,7 +9,7 @@ class SplashController extends GetxController {
     super.onReady();
     await Future.delayed(const Duration(seconds: 1));
     Get.find<LocationController>().getCurrentLocation().then((position) {
-        Get.toNamed(Routes.HOME, arguments: position);
+        Get.offAllNamed(Routes.HOME, arguments: position);
     });
   }
 }
