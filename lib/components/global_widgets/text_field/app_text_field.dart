@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task/utils/constants/constants.dart';
+import 'package:task/utils/styles/styles.dart';
 
 class AppTextField {
   AppTextField._();
@@ -10,10 +11,10 @@ class AppTextField {
       controller: searchTextController,
       focusNode: focusNode,
       onChanged: onChanged,
+      style: TextStyle(color: AppColors.baseFontColor, fontSize: Dimensions.fontSize14),
       decoration: InputDecoration(
         hintText: 'Search',
-        hintStyle: TextStyle(color: AppColors.hintTextColor
-        ),
+        hintStyle: TextStyle(color: AppColors.hintTextColor, fontSize: Dimensions.fontSize14),
         enabledBorder: InputBorder.none,
         focusedBorder: InputBorder.none,
         errorBorder: InputBorder.none,

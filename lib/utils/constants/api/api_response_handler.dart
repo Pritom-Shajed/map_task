@@ -4,7 +4,7 @@ import 'package:task/utils/strings.dart';
 
 class ApiResponseHandler {
   final Response _response;
-  final Function(Response) _successCallback; // New callback function
+  final Function(Response) _successCallback;
 
   ApiResponseHandler(this._response, {Function(Response)? successCallback})
       : _successCallback = successCallback ?? _handleSuccess;
@@ -14,7 +14,7 @@ class ApiResponseHandler {
 
     switch (_response.statusCode) {
       case 200:
-        responseModel = _successCallback(_response); // Call the success callback
+        responseModel = _successCallback(_response);
         break;
       case 400:
       case 404:

@@ -6,6 +6,7 @@ import 'package:task/components/global_widgets/global_widgets.dart';
 import 'package:task/modules/home/controller/home_controller.dart';
 import 'package:task/modules/search/search.dart';
 import 'package:task/storage/controller/storage_controller.dart';
+import 'package:task/utils/strings.dart';
 
 class SearchPage extends StatefulWidget {
    const SearchPage({super.key});
@@ -34,25 +35,31 @@ class _SearchPageState extends State<SearchPage> {
       body: Padding(
         padding: EdgeInsets.all(10.w),
         child:  Obx( () {
-            return _controller.searchPlaces.isEmpty ? Align(alignment: Alignment.topCenter, child: AppTexts.smallText(text: 'Search your address')) : ListView.separated(
-              separatorBuilder: (context, index) => 6.verticalSpace,
-                itemCount: _controller.searchPlaces.length,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index){
-                var placeInfo = _controller.searchPlaces[index];
-              return AppButtons.placeBtn(address: placeInfo.address, onTap: () {
-                _homeController.updateMapSymbolPosition(LatLng(double.parse(placeInfo.latitude), double.parse(placeInfo.longitude)));
-                Get.back();
-                AppBottomSheets.placeInfo(context,
-                  placeInfo: placeInfo,
-                  onTapSave: () {
-                  Get.back();
-                  _storageController.savePlace(place: placeInfo);
-                  },
-                );
+            return ((){
+               if(_controller.searchPlaces.isEmpty){
+                return Align(alignment: Alignment.topCenter, child: AppTexts.smallText(text: Strings.searchAddress));
+              } else {
+                return ListView.separated(
+                    separatorBuilder: (context, index) => 6.verticalSpace,
+                    itemCount: _controller.searchPlaces.length,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index){
+                      var placeInfo = _controller.searchPlaces[index];
+                      return AppButtons.placeBtn(address: placeInfo.address, onTap: () {
+                        _homeController.updateMapSymbolPosition(LatLng(double.parse(placeInfo.latitude), double.parse(placeInfo.longitude)));
+                        Get.back();
+                        AppBottomSheets.placeInfo(context,
+                          placeInfo: placeInfo,
+                          onTapSave: () {
+                            Get.back();
+                            _storageController.savePlace(place: placeInfo);
+                          },
+                        );
 
-              });
-            });
+                      });
+                    });
+              }
+            }());
           }
         ),
       ),

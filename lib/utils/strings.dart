@@ -5,4 +5,6 @@
   static const String turnOnLocation = 'Turn on your location';
   static const String noSavedPlaces = 'No places saved yet';
   static const String searchHere = 'Search here';
+  static const String searchAddress = 'Search your address';
+  static const String success = 'Success';
 }
